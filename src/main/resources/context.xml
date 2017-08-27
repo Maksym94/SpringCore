@@ -11,10 +11,8 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <!--xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:c="http://www.springframework.org/schema/c"-->
-   <!-- <context:annotation-config/>
-    <context:component-scan base-package="classes"/>
+    <!--<context:annotation-config/>
+    <context:component-scan base-package="classes"/>-->
 
    <import resource="loggers.xml"/>
 
@@ -30,25 +28,24 @@
                     static-field="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer.SYSTEM_PROPERTIES_MODE_OVERRIDE" />
         </property>
 
-    </bean>-->
+    </bean>
 
-    <!--<bean id="client" class="classes.Client">
+    <bean id="client" class="classes.Client">
         <constructor-arg value="${id}"/>
         <constructor-arg value="${name}"/>
         <property name="greeting" value="${greeting}"/>
-    </bean>-->
+    </bean>
+
     <util:map id="loggers">
         <entry key="INFO" value-ref="consoleEventLogger"/>
         <entry key="ERROR" value-ref="combinedEventLogger"/>
 
     </util:map>
 
-    <!--<bean id="app" class="classes.App">
+    <bean id="app" class="classes.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="cacheFileEventLogger"/>
-        <constructor-arg ref="loggerMap">
-
-        </constructor-arg>
+        <constructor-arg ref="loggerMap"/>
     </bean>
 
     <bean id="event" class="classes.Event" scope="prototype">
@@ -59,6 +56,5 @@
             <bean class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
         </constructor-arg>
     </bean>
--->
 
 </beans>

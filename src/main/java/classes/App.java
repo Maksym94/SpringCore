@@ -34,35 +34,20 @@ public class App {
         logger.logEvent(event);
     }
 
-
-/*<context:annotation-config/>
-<context:component-scan base-package="classes"/>*/
-
     public static void main(String[] args) {
-        //ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.register(AppConfig.class);
-        context.scan("classes");
-        context.refresh();
-
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         App app = (App) context.getBean("app");
         String msg = "Some event for 1";
-        // String message= msg.replaceAll(app.client.getId()+"", app.client.getFullName());
         Event event = (Event) context.getBean("event");
         event.setMsg(msg);
         app.logEvent(event, EventType.ERROR);
 
         String msg2 = "Some event for 2";
-        //String message2= msg2.replaceAll(app.client.getId()+"", app.client.getFullName());
+
         Event event2 = (Event) context.getBean("event");
         event2.setMsg(msg2);
         app.logEvent(event2, EventType.INFO);
 
         context.close();
-
-        //App app = new App();
-        //app.client = new Client(1,"John Derry");
-        //app.logEvent = new ConsoleEventLogger();
-        // app.logEvent("Some event for user 1");
     }
 }
