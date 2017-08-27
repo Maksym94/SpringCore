@@ -3,6 +3,7 @@ package classes;
 import interfaces.EventLogger;
 import org.apache.commons.io.FileUtils;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,6 +18,7 @@ public class FileEventLogger implements EventLogger {
         this.filename = filename;
     }
 
+    @PostConstruct
     public void init() throws IOException{
     this.file = new File(filename);
         file.canWrite();
@@ -24,7 +26,7 @@ public class FileEventLogger implements EventLogger {
 
     public void logEvent(Event event) {
         try {
-            FileUtils.writeStringToFile(new File(filename),event.toString(),true);
+            FileUtils.writeStringToFile(new File(filename),event.toString()+"\n",true);
         } catch (IOException e) {
             e.printStackTrace();
         }
