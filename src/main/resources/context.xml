@@ -33,7 +33,8 @@
     <bean id="client" class="classes.Client">
         <constructor-arg value="${id}"/>
         <constructor-arg value="${name}"/>
-        <property name="greeting" value="${greeting}"/>
+        <property name="greeting" value="#{systemEnvironment['USERNAME']}"/>
+        <!--<property name="greeting" value="${greeting}"/>-->
     </bean>
 
     <util:map id="loggers">
@@ -44,8 +45,8 @@
 
     <bean id="app" class="classes.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="cacheFileEventLogger"/>
-        <constructor-arg ref="loggerMap"/>
+        <constructor-arg value="#{T(classes.Event).isDay() ? fileEventLogger : consoleEventLogger }"/>
+        <constructor-arg ref="loggers"/>
     </bean>
 
     <bean id="event" class="classes.Event" scope="prototype">

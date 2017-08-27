@@ -19,6 +19,7 @@ public class App {
     private Map<EventType, EventLogger> loggers;
 
     public App(EventLogger eventLogger, Client client, Map<EventType, EventLogger> loggers) {
+        System.out.println(client.getGreeting());
         this.eventLogger = eventLogger;
         this.client = client;
         this.loggers = loggers;

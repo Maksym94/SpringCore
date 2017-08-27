@@ -1,6 +1,7 @@
 package classes;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -28,6 +29,15 @@ public class Event {
 
     public int getId() {
         return id;
+    }
+
+    public static boolean isDay(){
+      Calendar calendar = Calendar.getInstance();
+      int hour = calendar.get(Calendar.HOUR_OF_DAY);
+      if(hour>=8&&hour<=17){
+          return true;
+      }
+      return false;
     }
 
     @Override
