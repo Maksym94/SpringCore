@@ -24,14 +24,16 @@ public class App {
     private StatisticsAspect statAspect;*/
 
     public App(EventLogger eventLogger, Client client, Map<EventType, EventLogger> loggers) {
-        System.out.println(client.getGreeting());
         this.eventLogger = eventLogger;
         this.client = client;
         this.loggers = loggers;
     }
 
     private void logEvent(Event event, EventType type) {
-        String message = event.getMsg().replaceAll(client.getId() + "", client.getFullName());
+        String message = event.getMsg()
+                .replaceAll(
+                        client.getId() + "",
+                        client.getFullName());
         event.setMsg(message);
         EventLogger logger = loggers.get(type);
         if (type == null) {

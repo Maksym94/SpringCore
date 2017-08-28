@@ -15,7 +15,7 @@ import java.util.Map;
 public class StatisticsAspect {
     private Map<Class<?>, Integer> counter= new HashMap<>();
 
-    @AfterReturning("allLogEventMethods()")
+    @AfterReturning("LoggingAspect.allLogEventMethods()")
     public void count(JoinPoint joinPoint){
         Class<?> clazz = joinPoint.getTarget().getClass();
         if(!counter.containsKey(clazz)){

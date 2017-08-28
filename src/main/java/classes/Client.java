@@ -1,23 +1,20 @@
 package classes;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 /**
  * Created by Maksym_Petrenko on 8/17/2017.
  */
-@Component("client")
-public class Client {
+//@Component("client")
+public class Client{
     private int id;
     private String fullName;
 
-    @Value("${greeting}")
+   // @Value("${greeting}")
     private String greeting;
 
     public Client(
-            @Value("${id}")
+           // @Value("${id}")
                     int id,
-            @Value("${name}")
+           // @Value("${name}")
                     String fullName) {
         this.id = id;
         this.fullName = fullName;
