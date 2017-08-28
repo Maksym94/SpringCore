@@ -1,7 +1,10 @@
 package classes;
 
+import aspects.LoggingAspect;
+import aspects.StatisticsAspect;
 import config.AppConfig;
 import interfaces.EventLogger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -17,6 +20,8 @@ public class App {
     private EventLogger eventLogger;
     private Client client;
     private Map<EventType, EventLogger> loggers;
+    /*@Autowired
+    private StatisticsAspect statAspect;*/
 
     public App(EventLogger eventLogger, Client client, Map<EventType, EventLogger> loggers) {
         System.out.println(client.getGreeting());
@@ -48,6 +53,13 @@ public class App {
         Event event2 = (Event) context.getBean("event");
         event2.setMsg(msg2);
         app.logEvent(event2, EventType.INFO);
+        StatisticsAspect statAspect= (StatisticsAspect) context.getBean("statAspect");
+
+        for (Map.Entry<Class<?>,Integer> entry:statAspect.getCounter().entrySet()) {
+            Class<?> clazz = entry.getKey();
+            Integer number = entry.getValue();
+            System.out.println(clazz.getSimpleName()+" "+ number);
+        }
 
         context.close();
     }

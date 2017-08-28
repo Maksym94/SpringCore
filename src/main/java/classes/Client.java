@@ -14,7 +14,11 @@ public class Client {
     @Value("${greeting}")
     private String greeting;
 
-    public Client(@Value("${id}") int id,@Value("${name}") String fullName) {
+    public Client(
+            @Value("${id}")
+                    int id,
+            @Value("${name}")
+                    String fullName) {
         this.id = id;
         this.fullName = fullName;
     }
