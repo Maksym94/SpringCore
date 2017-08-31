@@ -55,7 +55,7 @@ public class App {
         Event event2 = (Event) context.getBean("event");
         event2.setMsg(msg2);
         app.logEvent(event2, EventType.INFO);
-        StatisticsAspect statAspect= (StatisticsAspect) context.getBean("statAspect");
+        StatisticsAspect statAspect= context.getBean(StatisticsAspect.class);
 
         for (Map.Entry<Class<?>,Integer> entry:statAspect.getCounter().entrySet()) {
             Class<?> clazz = entry.getKey();

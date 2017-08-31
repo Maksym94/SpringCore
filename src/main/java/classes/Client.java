@@ -10,6 +10,9 @@ public class Client{
 
    // @Value("${greeting}")
     private String greeting;
+    public Client(){
+
+    }
 
     public Client(
            // @Value("${id}")
